@@ -1,10 +1,14 @@
 import re
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 app = Flask(__name__)
 
 kinoko_count = 3
 takenoko_count = 5
 messages = ['Kinoko is wonrderful!', 'Takenoko is awesome!']
+
+@app.route('/api/v1/votes')
+def vote_api():
+    return jsonify({'kinoko':kinoko_count, 'takenoko':takenoko_count})
 
 @app.route('/')
 def top():
